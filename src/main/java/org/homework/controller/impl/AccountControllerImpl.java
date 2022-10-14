@@ -10,7 +10,7 @@ import org.homework.exception.IncorrectInputException;
 import org.homework.service.AccountService;
 
 public class AccountControllerImpl implements AccountController {
-    
+
     private static final boolean TEST_RUN = true;
 
     private final AccountService accountService;
@@ -35,7 +35,7 @@ public class AccountControllerImpl implements AccountController {
         accountTransactionRequest.accountFrom = "vasja";
         accountTransactionRequest.accountTo = "petja";
         accountTransactionRequest.transactionSum = 100d;
-        
+
         AccountTransactionResponse response = accountService.doTransaction(accountTransactionRequest);
         System.out.println("Response = " + response);
     }

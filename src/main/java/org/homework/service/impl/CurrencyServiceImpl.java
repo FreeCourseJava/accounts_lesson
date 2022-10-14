@@ -5,10 +5,9 @@ import org.homework.repository.CurrencyRepository;
 import org.homework.service.CurrencyService;
 
 public class CurrencyServiceImpl implements CurrencyService {
-    
-    private final CurrencyRepository currencyRepository;
-    
+
     private static final String BASE_CURRENCY = "USD";
+    private final CurrencyRepository currencyRepository;
 
     public CurrencyServiceImpl(CurrencyRepository currencyRepository) {
         this.currencyRepository = currencyRepository;
@@ -21,7 +20,7 @@ public class CurrencyServiceImpl implements CurrencyService {
             return amount / currencyFrom.rateToUsd;
         }
         Currency currencyTo = currencyRepository.load(to);
-        
+
         return amount / currencyFrom.rateToUsd * currencyTo.rateToUsd;
     }
 }

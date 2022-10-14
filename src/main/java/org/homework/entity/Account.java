@@ -3,11 +3,11 @@ package org.homework.entity;
 import java.util.Objects;
 
 public class Account implements HasKey {
-    
+
     public String accountName;
-    
+
     public String currencyAbbrev;
-    
+
     public double balance;
 
     @Override
