@@ -8,15 +8,25 @@ import org.homework.entity.AccountTransactionRequest;
 import org.homework.entity.AccountTransactionResponse;
 import org.homework.exception.IncorrectInputException;
 import org.homework.service.AccountService;
+import org.homework.service.impl.AccountServiceImpl;
 
 public class AccountControllerImpl implements AccountController {
-    
+
     private static final boolean TEST_RUN = true;
+
+    private static AccountControllerImpl instance;
 
     private final AccountService accountService;
 
-    public AccountControllerImpl(AccountService accountService) {
-        this.accountService = accountService;
+    private AccountControllerImpl() {
+        this.accountService = AccountServiceImpl.getInstance();
+    }
+
+    public static AccountControllerImpl getInstance() {
+        if (instance == null) {
+            instance = new AccountControllerImpl();
+        }
+        return instance;
     }
 
     @Override
@@ -35,7 +45,7 @@ public class AccountControllerImpl implements AccountController {
         accountTransactionRequest.accountFrom = "vasja";
         accountTransactionRequest.accountTo = "petja";
         accountTransactionRequest.transactionSum = 100d;
-        
+
         AccountTransactionResponse response = accountService.doTransaction(accountTransactionRequest);
         System.out.println("Response = " + response);
     }

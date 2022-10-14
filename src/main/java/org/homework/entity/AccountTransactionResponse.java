@@ -3,9 +3,9 @@ package org.homework.entity;
 import java.util.Objects;
 
 public class AccountTransactionResponse {
-    
+
     public Account accountFromResult;
-    
+
     public Account accountToResult;
 
     @Override

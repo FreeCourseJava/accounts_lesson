@@ -2,16 +2,24 @@ package org.homework.service.impl;
 
 import org.homework.entity.Currency;
 import org.homework.repository.CurrencyRepository;
+import org.homework.repository.impl.CurrencyRepositoryImpl;
 import org.homework.service.CurrencyService;
 
 public class CurrencyServiceImpl implements CurrencyService {
-    
-    private final CurrencyRepository currencyRepository;
-    
-    private static final String BASE_CURRENCY = "USD";
 
-    public CurrencyServiceImpl(CurrencyRepository currencyRepository) {
-        this.currencyRepository = currencyRepository;
+    private static final String BASE_CURRENCY = "USD";
+    private static CurrencyServiceImpl instance;
+    private final CurrencyRepository currencyRepository;
+
+    private CurrencyServiceImpl() {
+        this.currencyRepository = CurrencyRepositoryImpl.getInstance();
+    }
+
+    public static CurrencyServiceImpl getInstance() {
+        if (instance == null) {
+            instance = new CurrencyServiceImpl();
+        }
+        return instance;
     }
 
     @Override
@@ -21,7 +29,7 @@ public class CurrencyServiceImpl implements CurrencyService {
             return amount / currencyFrom.rateToUsd;
         }
         Currency currencyTo = currencyRepository.load(to);
-        
+
         return amount / currencyFrom.rateToUsd * currencyTo.rateToUsd;
     }
 }

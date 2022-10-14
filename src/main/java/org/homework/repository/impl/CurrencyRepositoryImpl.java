@@ -6,7 +6,16 @@ import org.homework.repository.CurrencyRepository;
 
 public class CurrencyRepositoryImpl extends AbstractRepository<Currency> implements CurrencyRepository {
 
-    public CurrencyRepositoryImpl() {
+    private static CurrencyRepositoryImpl instance;
+
+    private CurrencyRepositoryImpl() {
         super(Currency[].class, "currencies.json");
+    }
+
+    public static CurrencyRepositoryImpl getInstance() {
+        if (instance == null) {
+            instance = new CurrencyRepositoryImpl();
+        }
+        return instance;
     }
 }

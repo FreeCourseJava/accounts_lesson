@@ -49,7 +49,7 @@ public abstract class AbstractRepository<ENT extends HasKey> implements Reposito
     }
 
     private void saveInternal(Collection<ENT> newValues) {
-        try (FileOutputStream fileOutputStream = new FileOutputStream(fileName); PrintWriter printWriter = new PrintWriter(fileOutputStream)){
+        try (FileOutputStream fileOutputStream = new FileOutputStream(fileName); PrintWriter printWriter = new PrintWriter(fileOutputStream)) {
             printWriter.print(gson.toJson(newValues));
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
