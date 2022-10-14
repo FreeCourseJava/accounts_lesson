@@ -7,14 +7,21 @@ import org.homework.service.CurrencyService;
 public class CurrencyServiceImpl implements CurrencyService {
     
     private final CurrencyRepository currencyRepository;
+    
+    private static final String BASE_CURRENCY = "USD";
 
     public CurrencyServiceImpl(CurrencyRepository currencyRepository) {
         this.currencyRepository = currencyRepository;
     }
 
     @Override
-    public double convert(Currency from, Currency to, double amount) {
-        // you convert logic here
-        return 0;
+    public double convert(String from, String to, double amount) {
+        Currency currencyFrom = currencyRepository.load(from);
+        if (to.equals(BASE_CURRENCY)) {
+            return amount / currencyFrom.rateToUsd;
+        }
+        Currency currencyTo = currencyRepository.load(to);
+        
+        return amount / currencyFrom.rateToUsd * currencyTo.rateToUsd;
     }
 }

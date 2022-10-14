@@ -1,10 +1,8 @@
 package org.homework.repository;
 
-import java.util.Currency;
-import java.util.List;
 
-public interface CurrencyRepository {
-    
-    List<Currency> getCurrencies();
-    
+import org.homework.entity.Currency;
+
+public interface CurrencyRepository extends Repository<Currency> {
+
 }
