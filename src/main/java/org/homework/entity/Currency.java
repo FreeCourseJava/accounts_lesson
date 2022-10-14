@@ -3,7 +3,7 @@ package org.homework.entity;
 import java.util.Objects;
 
 public class Currency implements HasKey {
-    
+
     public double rateToUsd;
     public String abbrev;
 

@@ -3,11 +3,11 @@ package org.homework.entity;
 import java.util.Objects;
 
 public class AccountTransactionRequest {
-    
+
     public String accountFrom;
-    
+
     public String accountTo;
-    
+
     public double transactionSum;
 
     @Override
