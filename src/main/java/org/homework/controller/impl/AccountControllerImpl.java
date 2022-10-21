@@ -4,13 +4,16 @@ import java.util.Scanner;
 import java.util.function.Supplier;
 
 import org.homework.controller.AccountController;
+import org.homework.di.annotation.EntryPoint;
+import org.homework.di.annotation.Service;
 import org.homework.entity.AccountTransactionRequest;
 import org.homework.entity.AccountTransactionResponse;
 import org.homework.exception.IncorrectInputException;
 import org.homework.service.AccountService;
 
+@Service
 public class AccountControllerImpl implements AccountController {
-    
+
     private static final boolean TEST_RUN = true;
 
     private final AccountService accountService;
@@ -20,6 +23,7 @@ public class AccountControllerImpl implements AccountController {
     }
 
     @Override
+    @EntryPoint
     public void receiveCommand() {
 
         if (TEST_RUN) {
@@ -35,7 +39,7 @@ public class AccountControllerImpl implements AccountController {
         accountTransactionRequest.accountFrom = "vasja";
         accountTransactionRequest.accountTo = "petja";
         accountTransactionRequest.transactionSum = 100d;
-        
+
         AccountTransactionResponse response = accountService.doTransaction(accountTransactionRequest);
         System.out.println("Response = " + response);
     }

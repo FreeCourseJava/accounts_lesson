@@ -1,5 +1,6 @@
 package org.homework.service.impl;
 
+import org.homework.di.annotation.Service;
 import org.homework.entity.Account;
 import org.homework.entity.AccountTransactionRequest;
 import org.homework.entity.AccountTransactionResponse;
@@ -8,6 +9,7 @@ import org.homework.repository.AccountRepository;
 import org.homework.service.AccountService;
 import org.homework.service.CurrencyService;
 
+@Service
 public class AccountServiceImpl implements AccountService {
 
     private final CurrencyService currencyService;

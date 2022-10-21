@@ -1,9 +1,11 @@
 package org.homework.service.impl;
 
+import org.homework.di.annotation.Service;
 import org.homework.entity.Currency;
 import org.homework.repository.CurrencyRepository;
 import org.homework.service.CurrencyService;
 
+@Service
 public class CurrencyServiceImpl implements CurrencyService {
     
     private final CurrencyRepository currencyRepository;
