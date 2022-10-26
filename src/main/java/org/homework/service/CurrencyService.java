@@ -1,9 +1,10 @@
 package org.homework.service;
 
 
+import org.homework.annotation.Service;
 import org.homework.entity.Currency;
 import org.homework.repository.CurrencySerializer;
-
+@Service
 public class CurrencyService {
 
     private CurrencySerializer currencySerializer;

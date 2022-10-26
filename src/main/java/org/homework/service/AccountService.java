@@ -1,8 +1,10 @@
 package org.homework.service;
 
+import org.homework.annotation.Service;
 import org.homework.entity.Account;
 import org.homework.repository.AccountSerializer;
 
+@Service
 public class AccountService {
     private AccountSerializer accountSerializer;
     private Account[] accounts;

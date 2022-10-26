@@ -1,12 +1,16 @@
 package org.homework.controller.impl;
 
+import org.homework.annotation.Service;
+import org.homework.annotation.StartPoint;
 import org.homework.controller.AccountController;
 import org.homework.service.AccountService;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+@StartPoint
 public class AccountControllerImpl implements AccountController {
+
 
 
     @Override
