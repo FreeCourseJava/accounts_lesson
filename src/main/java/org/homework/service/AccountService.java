@@ -11,10 +11,11 @@ public class AccountService {
 
     private CurrencyService currencyServ;
 
-    public AccountService() {
-        accountSerializer = new AccountSerializer();
-        accounts = accountSerializer.read();
-        currencyServ = new CurrencyService();
+    public AccountService(AccountSerializer accountSerializer,  CurrencyService currencyServ) {
+        this.accountSerializer = accountSerializer;
+        accounts = this.accountSerializer.read();
+        this.currencyServ = currencyServ;
+        System.out.println("constructor AccServ");
     }
 
     private int getAccountNumber(String accName) {

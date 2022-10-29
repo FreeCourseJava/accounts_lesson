@@ -10,9 +10,10 @@ public class CurrencyService {
     private CurrencySerializer currencySerializer;
     private Currency[] currencyRates;
 
-    public CurrencyService() {
-        currencySerializer = new CurrencySerializer();
+    public CurrencyService(CurrencySerializer currencySerializer) {
+        this.currencySerializer = currencySerializer;
         currencyRates = currencySerializer.read();
+        System.out.println("constructor CurrServ");
     }
 
     public double convertToUSD(double sum, String abbrev) {

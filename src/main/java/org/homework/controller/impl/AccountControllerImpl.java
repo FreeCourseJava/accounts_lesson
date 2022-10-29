@@ -8,11 +8,15 @@ import org.homework.service.AccountService;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-@StartPoint
+@Service
+
 public class AccountControllerImpl implements AccountController {
-
-
-
+    private AccountService accServ;
+    public AccountControllerImpl(AccountService accServ){
+        this.accServ = accServ;
+        System.out.println("constructor AccContrl");
+    }
+    @StartPoint
     @Override
     public void receiveCommand() {
         Scanner scanner = new Scanner(System.in);
@@ -32,10 +36,8 @@ public class AccountControllerImpl implements AccountController {
             return;
         }
 
-        AccountService accServ = new AccountService();
         accServ.cashTranslation(donor,acceptor,sum);
 
-
-    }
+   }
 
 }
