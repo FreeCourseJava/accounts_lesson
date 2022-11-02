@@ -4,11 +4,13 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
+import java.sql.SQLSyntaxErrorException;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 import org.homework.di.annotation.EntryPoint;
 import org.homework.di.annotation.Service;
+import org.homework.repository.DatabaseConnector;
 import org.reflections.Reflections;
 
 public final class Application {
@@ -23,9 +25,11 @@ public final class Application {
 
     public static void run() {
         prepareBeans();
+        new TableValidator((DatabaseConnector)findBean(DatabaseConnector.class)).validate();
         postConstructInvocation();
-
     }
+
+    
 
     private static void postConstructInvocation() {
         for (Object bean : BEANS) {

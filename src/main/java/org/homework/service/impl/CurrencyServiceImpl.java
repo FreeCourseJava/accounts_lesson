@@ -17,13 +17,17 @@ public class CurrencyServiceImpl implements CurrencyService {
     }
 
     @Override
+    public double convert(Long from, Long to, double amount) { 
+        return convert(currencyRepository.load(from).getAbbrev(), currencyRepository.load(to).getAbbrev(), amount);
+    }
+    @Override
     public double convert(String from, String to, double amount) {
         Currency currencyFrom = currencyRepository.load(from);
         if (to.equals(BASE_CURRENCY)) {
-            return amount / currencyFrom.rateToUsd;
+            return amount / currencyFrom.getRateToUsd();
         }
         Currency currencyTo = currencyRepository.load(to);
         
-        return amount / currencyFrom.rateToUsd * currencyTo.rateToUsd;
+        return amount / currencyFrom.getRateToUsd() * currencyTo.getRateToUsd();
     }
 }

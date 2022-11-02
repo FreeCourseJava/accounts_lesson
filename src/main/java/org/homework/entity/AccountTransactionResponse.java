@@ -4,9 +4,9 @@ import java.util.Objects;
 
 public class AccountTransactionResponse {
     
-    public Account accountFromResult;
+    private Account accountFromResult;
     
-    public Account accountToResult;
+    private Account accountToResult;
 
     @Override
     public String toString() {
@@ -27,5 +27,21 @@ public class AccountTransactionResponse {
     @Override
     public int hashCode() {
         return Objects.hash(accountFromResult, accountToResult);
+    }
+
+    public Account getAccountFromResult() {
+        return accountFromResult;
+    }
+
+    public void setAccountFromResult(Account accountFromResult) {
+        this.accountFromResult = accountFromResult;
+    }
+
+    public Account getAccountToResult() {
+        return accountToResult;
+    }
+
+    public void setAccountToResult(Account accountToResult) {
+        this.accountToResult = accountToResult;
     }
 }

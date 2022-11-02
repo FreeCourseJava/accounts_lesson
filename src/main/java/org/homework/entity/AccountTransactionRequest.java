@@ -4,20 +4,11 @@ import java.util.Objects;
 
 public class AccountTransactionRequest {
     
-    public String accountFrom;
+    private String accountFrom;
     
-    public String accountTo;
+    private String accountTo;
     
-    public double transactionSum;
-
-    @Override
-    public String toString() {
-        return "AccountTransactionRequest{" +
-                "accountFrom='" + accountFrom + '\'' +
-                ", accountTo='" + accountTo + '\'' +
-                ", transactionSum=" + transactionSum +
-                '}';
-    }
+    private double transactionSum;
 
     @Override
     public boolean equals(Object o) {
@@ -30,5 +21,38 @@ public class AccountTransactionRequest {
     @Override
     public int hashCode() {
         return Objects.hash(accountFrom, accountTo, transactionSum);
+    }
+
+    @Override
+    public String toString() {
+        return "AccountTransactionRequest{" +
+                "accountFrom='" + accountFrom + '\'' +
+                ", accountTo='" + accountTo + '\'' +
+                ", transactionSum=" + transactionSum +
+                '}';
+    }
+
+    public String getAccountFrom() {
+        return accountFrom;
+    }
+
+    public void setAccountFrom(String accountFrom) {
+        this.accountFrom = accountFrom;
+    }
+
+    public String getAccountTo() {
+        return accountTo;
+    }
+
+    public void setAccountTo(String accountTo) {
+        this.accountTo = accountTo;
+    }
+
+    public double getTransactionSum() {
+        return transactionSum;
+    }
+
+    public void setTransactionSum(double transactionSum) {
+        this.transactionSum = transactionSum;
     }
 }

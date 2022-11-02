@@ -36,9 +36,9 @@ public class AccountControllerImpl implements AccountController {
 
     private void testRun() {
         AccountTransactionRequest accountTransactionRequest = new AccountTransactionRequest();
-        accountTransactionRequest.accountFrom = "vasja";
-        accountTransactionRequest.accountTo = "petja";
-        accountTransactionRequest.transactionSum = 100d;
+        accountTransactionRequest.setAccountFrom("vasja");
+        accountTransactionRequest.setAccountTo("petja");
+        accountTransactionRequest.setTransactionSum(100d);
 
         AccountTransactionResponse response = accountService.doTransaction(accountTransactionRequest);
         System.out.println("Response = " + response);
@@ -57,9 +57,9 @@ public class AccountControllerImpl implements AccountController {
         double transferAmount = getFromKeyboard(() -> Double.parseDouble(scanner.nextLine()));
 
         AccountTransactionRequest accountTransactionRequest = new AccountTransactionRequest();
-        accountTransactionRequest.accountFrom = firstAccount;
-        accountTransactionRequest.accountTo = secondAccount;
-        accountTransactionRequest.transactionSum = transferAmount;
+        accountTransactionRequest.setAccountFrom(firstAccount);
+        accountTransactionRequest.setAccountTo(secondAccount);
+        accountTransactionRequest.setTransactionSum(transferAmount);
 
         AccountTransactionResponse accountTransactionResponse = accountService.doTransaction(accountTransactionRequest);
 
