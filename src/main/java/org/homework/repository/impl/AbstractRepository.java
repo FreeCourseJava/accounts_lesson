@@ -41,6 +41,24 @@ public abstract class AbstractRepository<ENT extends HasKey> implements Reposito
     }
 
     @Override
+    public ENT load(Long id) {
+        Map<String, ENT> values = getValues();
+        for (ENT value : values.values()) {
+            if (id.equals(value.getId())) {
+                return value;
+            }
+        }
+        
+        throw new EntityNotFoundException(id.toString());
+        
+    }
+    
+    @Override
+    public Collection<ENT> getAll() {
+        return getValues().values();
+    }
+
+    @Override
     public void save(ENT entity) {
         Map<String, ENT> values = getValues();
         values.replace(entity.getKey().toLowerCase(), entity);

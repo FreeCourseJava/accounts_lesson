@@ -4,4 +4,6 @@ public interface HasKey {
     
     String getKey();
     
+    Long getId();
+    
 }
