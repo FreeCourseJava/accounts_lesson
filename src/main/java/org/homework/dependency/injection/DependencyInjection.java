@@ -1,4 +1,4 @@
-package org.homework.DI;
+package org.homework.dependency.injection;
 
 import org.homework.annotation.Service;
 import org.homework.annotation.StartPoint;
@@ -14,13 +14,16 @@ import java.util.Map;
 import java.util.Set;
 
 
-public class DependencyInjection {
+public final class DependencyInjection {
+
+    private DependencyInjection() {
+    }
 
     private static final Reflections reflections = new Reflections("org.homework");
     private static Map<String, Object> beanDictionary = new HashMap<>();
 
 
-    public static void beanGrow(Set<Class<?>> services) {
+    private static void beanGrow(Set<Class<?>> services) {
         for (Class<?> classs : services) {
             if (!beanDictionary.containsKey(classs.getName())) {
                 createBean(classs);
@@ -28,7 +31,7 @@ public class DependencyInjection {
         }
     }
 
-    public static Object createBean(Class<?> classs) {
+    private static Object createBean(Class<?> classs) {
 
         Constructor<?>[] constructors = classs.getDeclaredConstructors();
         Object bean = null;
@@ -82,7 +85,7 @@ public class DependencyInjection {
             for (Method methh : meth) {
                 if (methh.getAnnotation(StartPoint.class) != null) {
                     try {
-                        methh.invoke(temp, null);
+                        methh.invoke(temp);
                     } catch (IllegalAccessException e) {
                         throw new RuntimeException(e);
                     } catch (InvocationTargetException e) {

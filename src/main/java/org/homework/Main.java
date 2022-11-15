@@ -1,8 +1,6 @@
 package org.homework;
 
-import org.homework.DI.DependencyInjection;
-import org.homework.controller.AccountController;
-import org.homework.controller.impl.AccountControllerImpl;
+import org.homework.dependency.injection.DependencyInjection;
 
 public class Main {
 
