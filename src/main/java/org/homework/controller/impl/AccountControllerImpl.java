@@ -14,7 +14,7 @@ public class AccountControllerImpl implements AccountController {
     private AccountService accServ;
     public AccountControllerImpl(AccountService accServ){
         this.accServ = accServ;
-        System.out.println("constructor AccContrl");
+        System.out.println("Выполнен конструктор AccCtrl");
     }
     @StartPoint
     @Override

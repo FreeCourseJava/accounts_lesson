@@ -9,7 +9,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -31,10 +30,43 @@ public final class DependencyInjection {
         }
     }
 
+    private static boolean isInterface(Class<?> classs) {
+        Constructor<?>[] constructors = classs.getDeclaredConstructors();
+        if (constructors.length == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    private static Constructor<?>[] getSubTypeConstructors(Class<?> classs) {
+        Set<Class<?>> subtypes = reflections.getSubTypesOf((Class<Object>) classs);
+        for (Class<?> subtype : subtypes) {
+            if (subtype.isAnnotationPresent(Service.class)) {
+                return subtype.getConstructors();
+            }
+        }
+        return null;
+    }
+
+    private static Class<?> getSubTypeClass(Class<?> classs) {
+        Set<Class<?>> subtypes = reflections.getSubTypesOf((Class<Object>) classs);
+        for (Class<?> subtype : subtypes) {
+            if (subtype.isAnnotationPresent(Service.class)) {
+                return subtype;
+            }
+        }
+        return null;
+    }
+
     private static Object createBean(Class<?> classs) {
 
         Constructor<?>[] constructors = classs.getDeclaredConstructors();
         Object bean = null;
+
+        if (isInterface(classs)) {
+            getSubTypeClass(classs);
+            constructors = getSubTypeConstructors(classs);
+        }
 
         if (constructors[0].getParameterCount() == 0) {
             try {
@@ -51,10 +83,14 @@ public final class DependencyInjection {
             Parameter[] constrParam = constructors[0].getParameters();
             Object[] constrParamBeans = new Object[constrParam.length];
             for (int i = 0; i < constrParam.length; i++) {
-                if (beanDictionary.containsKey(constrParam[i].getType().getName())) {
-                    bean = beanDictionary.get(constrParam[i].getType().getName());
+                Class<?> tempClass = constrParam[i].getType();
+                if (isInterface(tempClass)) {
+                    tempClass = getSubTypeClass(tempClass);
+                }
+                if (beanDictionary.containsKey(tempClass.getName())) {
+                    bean = beanDictionary.get(tempClass.getName());
                 } else {
-                    bean = createBean(constrParam[i].getType());
+                    bean = createBean(tempClass);
                 }
                 constrParamBeans[i] = bean;
             }
