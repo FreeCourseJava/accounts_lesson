@@ -3,7 +3,7 @@ package org.homework.repository;
 import org.homework.annotation.Service;
 import org.homework.entity.Currency;
 
-@Service
+//@Service
 public class CurrencyFileRepo extends FileRepoAbstract<Currency> implements RepositoryCurrency{
 
     public CurrencyFileRepo(){

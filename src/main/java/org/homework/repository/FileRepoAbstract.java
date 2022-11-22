@@ -22,7 +22,7 @@ public abstract class FileRepoAbstract<Type> implements Repository<Type> {
         this.records = read();
     }
 
-    @Override
+
     public void write(Type[] objekt) {
         String toWrite = gson.toJson(objekt);
         try (OutputStream outputStream = new FileOutputStream(fileName);
@@ -35,7 +35,7 @@ public abstract class FileRepoAbstract<Type> implements Repository<Type> {
         }
     }
 
-    @Override
+
     public Type[] read() {
         String temp = "";
         try (InputStream inputStream = new FileInputStream(fileName);
@@ -60,13 +60,10 @@ public abstract class FileRepoAbstract<Type> implements Repository<Type> {
     }
 
     @Override
-    public void putEntities(Type objekt1, Type objekt2) {
+    public void putEntity(Type objekt) {
         for (Type entity : records) {
-            if (entity.equals(objekt1)) {
-                entity = objekt1;
-            }
-            if (entity.equals(objekt2)) {
-                entity = objekt2;
+            if (entity.equals(objekt)) {
+                entity = objekt;
             }
         }
         write(records);

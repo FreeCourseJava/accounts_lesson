@@ -4,7 +4,7 @@ package org.homework.repository;
 import org.homework.annotation.Service;
 import org.homework.entity.Account;
 
-@Service
+//@Service
 public class AccountFileRepo extends FileRepoAbstract<Account> implements RepositoryAccount{
 
     public AccountFileRepo(){

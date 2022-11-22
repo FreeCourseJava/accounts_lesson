@@ -16,7 +16,7 @@ public class AccountService {
         System.out.println("Выполнен конструктор AccServ");
     }
 
-     public void cashTranslation(String donor, String acceptor, double sum) {
+    public void cashTranslation(String donor, String acceptor, double sum) {
         Account donorAcc = accountRepo.getEntity(donor);
         Account acceptorAcc = accountRepo.getEntity(acceptor);
         if (donorAcc == null) {
@@ -45,7 +45,8 @@ public class AccountService {
 
         acceptorAcc.balance = acceptorAcc.balance + sumAcceptor;
         donorAcc.balance = donorAcc.balance - sumDonor;
-        accountRepo.putEntities(donorAcc, acceptorAcc);
+        accountRepo.putEntity(donorAcc);
+        accountRepo.putEntity(acceptorAcc);
         System.out.println("Перевод осуществлен успешно. Счета обновлены");
     }
 
